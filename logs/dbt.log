@@ -1,0 +1,33 @@
+[0m15:58:33.739617 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E3A30F2750>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E3A6764F50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E3A5AE57D0>]}
+
+
+============================== 15:58:33.742972 | 1414cdb5-4393-47c5-9993-0a5b95f6a7ea ==============================
+[0m15:58:33.742972 [info ] [MainThread]: Running with dbt=1.11.8
+[0m15:58:33.742972 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'introspect': 'True', 'log_cache_events': 'False', 'empty': 'None', 'cache_selected_only': 'False', 'log_format': 'default', 'debug': 'False', 'fail_fast': 'False', 'profiles_dir': 'C:\\Users\\Girija\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'invocation_command': 'dbt init dbt_project', 'use_colors': 'True', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m15:58:33.767756 [info ] [MainThread]: Creating dbt configuration folder at C:\Users\Girija\.dbt
+[0m15:58:33.767756 [debug] [MainThread]: Starter project path: C:\Users\Girija\Documents\GT_project_workspace\modern-data-stack-pipeline\venv\Lib\site-packages\dbt\include\starter_project
+[0m15:58:33.783581 [info ] [MainThread]: 
+Your new dbt project "dbt_project" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m15:58:33.783581 [info ] [MainThread]: Setting up your profile.
+[0m15:59:07.991882 [debug] [MainThread]: Snowflake adapter: Setting snowflake.connector to ERROR (file logging only)
+[0m15:59:07.991882 [debug] [MainThread]: Snowflake adapter: Setting botocore to ERROR (file logging only)
+[0m15:59:07.991882 [debug] [MainThread]: Snowflake adapter: Setting boto3 to ERROR (file logging only)
+[0m16:00:26.333649 [info ] [MainThread]: Profile dbt_project written to C:\Users\Girija\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m16:00:26.335660 [debug] [MainThread]: Command `dbt init` succeeded at 16:00:26.335660 after 112.68 seconds
+[0m16:00:26.335660 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E39FBEA4D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E39FC2B3D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001E3A7989150>]}
+[0m16:00:26.335660 [debug] [MainThread]: Flushing usage events
+[0m16:00:27.107395 [debug] [MainThread]: An error was encountered while trying to flush usage events
