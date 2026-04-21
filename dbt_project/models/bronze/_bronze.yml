@@ -2,21 +2,31 @@ version: 2
 
 models:
   - name: stg_taxi_trips
-    description: "Raw NYC taxi trips with surrogate key and validation flag"
+    description: "All NYC taxi trips from raw source with surrogate key and validation flag"
     columns:
       - name: trip_id
-        description: "Surrogate key"
+        description: "Surrogate key generated from vendor_id, pickup/dropoff datetime, location IDs and store_and_fwd_flag"
         tests:
           - unique
           - not_null
+      - name: vendor_id
+        description: "Taxi vendor (1=Creative Mobile, 2=VeriFone)"
+      - name: pickup_datetime
+        description: "Trip pickup timestamp in nanoseconds"
+      - name: dropoff_datetime
+        description: "Trip dropoff timestamp in nanoseconds"
       - name: reason_flag
+        description: "Validation result: Valid, Invalid pickup_datetime, Invalid dropoff_datetime, or Invalid trip_distance"
         tests:
           - not_null
+          - accepted_values:
+              values: ['Valid', 'Invalid pickup_datetime', 'Invalid dropoff_datetime', 'Invalid trip_distance']
 
   - name: stg_taxi_trips_clean
-    description: "Valid trips only (reason_flag = Valid)"
+    description: "Valid trips only — rows where reason_flag = Valid"
     columns:
       - name: trip_id
+        description: "Surrogate key — unique per trip"
         tests:
           - unique
           - not_null
@@ -25,6 +35,9 @@ models:
     description: "Rejected trips with reason for rejection"
     columns:
       - name: trip_id
+        description: "Surrogate key — unique per rejected trip"
         tests:
           - unique
           - not_null
+      - name: reason_flag
+        description: "Reason the trip was rejected"
