@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_taxi_trips
+    description: "Raw NYC taxi trips with surrogate key and validation flag"
+    columns:
+      - name: trip_id
+        description: "Surrogate key"
+        tests:
+          - unique
+          - not_null
+      - name: reason_flag
+        tests:
+          - not_null
+
+  - name: stg_taxi_trips_clean
+    description: "Valid trips only (reason_flag = Valid)"
+    columns:
+      - name: trip_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_taxi_trips_rejected
+    description: "Rejected trips with reason for rejection"
+    columns:
+      - name: trip_id
+        tests:
+          - unique
+          - not_null

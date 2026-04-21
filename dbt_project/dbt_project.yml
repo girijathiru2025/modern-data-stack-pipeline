@@ -33,7 +33,7 @@ models:
   dbt_project:
     # Config indicated by + and applies to all files under models/example/
     bronze:
-      +materialized: view
+      +materialized: table
       +schema: BRONZE
     silver:
       +materialized: table
