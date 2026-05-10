@@ -1,0 +1,92 @@
+version: 2
+
+models:
+  - name: mart_daily_revenue
+    description: >
+      Daily revenue and trip aggregates grouped by pickup location. Used for
+      trend analysis and location-level revenue reporting.
+    columns:
+      - name: trip_date
+        description: Calendar date of the trip pickup.
+        tests:
+          - not_null
+
+      - name: pu_location_id
+        description: Taxi zone ID where the trip originated.
+        tests:
+          - not_null
+
+      - name: total_trips
+        description: Number of trips on this date from this pickup location.
+        tests:
+          - not_null
+
+      - name: total_revenue
+        description: Sum of total_amount for all trips on this date and location.
+
+      - name: avg_trip_distance
+        description: Average trip distance in miles.
+
+      - name: avg_fare_amount
+        description: Average base fare (excludes tips, surcharges).
+
+  - name: mart_hourly_demand
+    description: >
+      Trip volume and average duration grouped by hour of day and day of week.
+      Used for demand pattern analysis and driver supply planning.
+    columns:
+      - name: hour_of_day
+        description: Hour of pickup (0–23).
+        tests:
+          - not_null
+
+      - name: day_of_week
+        description: Day of week as integer (0=Sunday, 6=Saturday).
+        tests:
+          - not_null
+
+      - name: day_name
+        description: Day of week as name (e.g. Monday).
+
+      - name: is_weekend
+        description: TRUE if Saturday or Sunday.
+        tests:
+          - not_null
+
+      - name: total_trips
+        description: Number of trips in this hour/day combination.
+        tests:
+          - not_null
+
+      - name: avg_trip_duration_minutes
+        description: Average trip duration in minutes for this hour/day bucket.
+
+  - name: mart_trip_stats
+    description: >
+      Overall trip statistics broken down by payment type. Provides a summary
+      of cost, duration, and revenue metrics across the full dataset.
+    columns:
+      - name: payment_type
+        description: Payment method code (1=Credit card, 2=Cash, 3=No charge, 4=Dispute).
+        tests:
+          - not_null
+
+      - name: total_trips
+        description: Total number of trips for this payment type.
+        tests:
+          - not_null
+
+      - name: avg_duration_minutes
+        description: Average trip duration in minutes.
+
+      - name: avg_cost_per_mile
+        description: Average cost per mile (NULL trips excluded from avg).
+
+      - name: avg_total_amount
+        description: Average total fare including all surcharges and tips.
+
+      - name: avg_tip_amount
+        description: Average tip amount.
+
+      - name: total_revenue
+        description: Total revenue across all trips for this payment type.

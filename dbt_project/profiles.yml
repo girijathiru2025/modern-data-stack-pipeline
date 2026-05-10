@@ -1,0 +1,26 @@
+dbt_project:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: TRANSFORMER_ROLE
+      warehouse: TRANSFORM_WH
+      database: TRANSFORM_DB
+      schema: BRONZE        # default schema; models override this via +schema config
+      threads: 4
+      client_session_keep_alive: false
+
+    prod:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: TRANSFORMER_ROLE
+      warehouse: TRANSFORM_WH
+      database: TRANSFORM_DB
+      schema: BRONZE
+      threads: 4
+      client_session_keep_alive: false

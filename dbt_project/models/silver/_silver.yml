@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: int_trips_enriched
+    description: >
+      Enriched taxi trips with derived fields for analytics. Reads from the
+      validated bronze clean layer and adds duration, cost efficiency, time
+      segmentation, and weekend indicators.
+    columns:
+      - name: trip_id
+        description: Surrogate key generated in the bronze layer.
+        tests:
+          - unique
+          - not_null
+
+      - name: pickup_datetime
+        description: Timestamp when the trip started (nanosecond precision cast to TIMESTAMP_NTZ).
+        tests:
+          - not_null
+
+      - name: dropoff_datetime
+        description: Timestamp when the trip ended.
+        tests:
+          - not_null
+
+      - name: trip_duration_minutes
+        description: Elapsed minutes between pickup and dropoff.
+        tests:
+          - not_null
+
+      - name: cost_per_mile
+        description: Total fare divided by trip distance. NULL for zero-distance trips.
+
+      - name: time_of_day_bucket
+        description: Pickup time categorized into morning / afternoon / evening / night.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['morning', 'afternoon', 'evening', 'night']
+
+      - name: is_weekend
+        description: TRUE if the pickup occurred on a Saturday or Sunday.
+        tests:
+          - not_null

@@ -20,7 +20,8 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: ['Valid', 'Invalid pickup_datetime', 'Invalid dropoff_datetime', 'Invalid trip_distance']
+              arguments:
+                values: ['Valid', 'Invalid pickup_datetime', 'Invalid dropoff_datetime', 'Invalid trip_distance']
 
   - name: stg_taxi_trips_clean
     description: "Valid trips only — rows where reason_flag = Valid"
